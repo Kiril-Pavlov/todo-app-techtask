@@ -2,7 +2,11 @@ import React from 'react'
 
 const TodoApp = () => {
   return (
-    <div>todoApp</div>
+    <div className='mainContainer'>
+        <div>
+
+        </div>
+    </div>
   )
 }
 
