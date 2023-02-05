@@ -1,48 +1,74 @@
-import React from 'react'
+import React from "react";
+
+import styles from "../styles/todo.module.css";
+
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 const TodoApp = () => {
   return (
-    <div className='mainContainer'>
-        <div>
-          <input type="text" />
-          <div>
-            <input type="date" name="" id="" />
-            <button>ADD</button>
+    <div className={styles.mainContainer}>
+      <div className={styles.inputAreaContainer}>
+        <input
+          type="text"
+          className={styles.taskNameInput}
+          placeholder="Enter task description here..."
+        />
+        <div className={styles.inputDateBtnContainer}>
+          <input type="date" name="" id="" className={styles.inputDate} />
+          <button className={styles.addBtn}>ADD</button>
+        </div>
+      </div>
+      <div className={styles.filterAreaContainer}>
+        <div className={styles.filterLabel}>Filter by:</div>
+        <div className={styles.dateStatusContainer}>
+          <input type="date" name="" id="" className={styles.filterDate} />
+          <select name="" id="" className={styles.filterDate}>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+      </div>
+      <div className={styles.sortAreaContainer}>
+        <div className={styles.sortItemContainer}>
+          <div className={styles.sortLabel}>Name</div>
+          <div className={styles.sortDirection}>
+            <button className={styles.sortBtn}>
+              <AiOutlineArrowDown />
+            </button>
+            <button className={styles.sortBtn}>
+              <AiOutlineArrowUp />
+            </button>
           </div>
         </div>
-        <div>
-          <div>Filter by:</div>
-          <div>
-            <input type="date" name="" id="" />
-            <select name="" id="">
-              <option value="active">Active</option>
-              <option value="completed">Completed</option>
-            </select>
+        <div className={styles.sortItemContainer}>
+          <div className={styles.sortLabel}>Date</div>
+          <div className={styles.sortDirection}>
+            <button className={styles.sortBtn}>
+              <AiOutlineArrowDown />
+            </button>
+            <button className={styles.sortBtn}>
+              <AiOutlineArrowUp />
+            </button>
           </div>
         </div>
-        <div>
-          <div>
-            <div>Tackname</div>
-            <button>Asc</button>
-            <button>Desc</button>
-          </div>
-          <div>
-            <div>Date</div>
-            <button>Asc</button>
-            <button>Desc</button>
-          </div>
-          <div>
-            <div>Status</div>
-            <button>Asc</button>
-            <button>Desc</button>
+        <div className={styles.sortItemContainer}>
+          <div className={styles.sortLabel}>Status</div>
+          <div className={styles.sortDirection}>
+            <button className={styles.sortBtn}>
+              <AiOutlineArrowDown />
+            </button>
+            <button className={styles.sortBtn}>
+              <AiOutlineArrowUp />
+            </button>
           </div>
         </div>
-        <div>
-          {/* Mapping the task
+      </div>
+      <div>
+        {/* Mapping the task
           todo component */}
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default TodoApp
+export default TodoApp;

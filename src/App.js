@@ -1,9 +1,9 @@
-import './styles/App.css';
+import styles from './styles/App.module.css'
 import TodoApp from './components/TodoApp';
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <TodoApp/>
     </div>
   );
