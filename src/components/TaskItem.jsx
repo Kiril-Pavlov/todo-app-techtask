@@ -14,7 +14,7 @@ const TaskItem = ({ tasks, setTasks }) => {
             <div>{taskItem.taskName}</div>
           </div>
           <div className={styles.taskDateStatus}>
-            <div className={`${styles.taskName} ${taskItem.status==="completed" ? styles.inactive:null}`}>{taskItem.date}</div>
+            <div className={`${styles.taskDate} ${taskItem.status==="completed" ? styles.inactive:null}`}>{taskItem.date}</div>
             <div className={`${styles.taskStatus} ${taskItem.status==="completed" ? styles.completed:null}`}>{taskItem.status}</div>
           </div>
           <div className={styles.controlsContainer}>

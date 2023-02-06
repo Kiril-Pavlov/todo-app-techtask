@@ -3,8 +3,8 @@
     max-width: 700px;
     display: flex;
     flex-direction: column;
-    padding: 30px;
-    border-radius: 30px;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .inputAreaContainer{
@@ -131,5 +131,9 @@
 
     .filterAreaContainer{
         flex-direction: column;
+    }
+
+    .sortAreaContainer{
+        grid-template-columns: 1fr;
     }
 }

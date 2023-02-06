@@ -31,7 +31,7 @@ const TodoApp = () => {
     {
       taskName:'Learn SQL',
       date:'06/02/2023',
-      status: 'active'
+      status: 'completed'
     },
   ])
   return (
