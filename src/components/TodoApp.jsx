@@ -1,10 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "../styles/todo.module.css";
 
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 const TodoApp = () => {
+  const [taskList,setTaskList]= useState([
+    {
+      taskName:'Learn JavaScript',
+      date:'06/02/2023',
+      status: 'completed'
+    },
+    {
+      taskName:'Learn Tailwind',
+      date:'12/02/2023',
+      status: 'active'
+    },
+    {
+      taskName:'Learn NodeJS',
+      date:'06/02/2023',
+      status: 'completed'
+    },
+    {
+      taskName:'Learn Express',
+      date:'08/02/2023',
+      status: 'active'
+    },
+    {
+      taskName:'Learn SQL',
+      date:'06/02/2023',
+      status: 'active'
+    },
+  ])
   return (
     <div className={styles.mainContainer}>
       <div className={styles.inputAreaContainer}>
