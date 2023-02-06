@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import TaskItem from "./TaskItem";
+
 import styles from "../styles/todo.module.css";
 
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
@@ -91,8 +93,7 @@ const TodoApp = () => {
         </div>
       </div>
       <div>
-        {/* Mapping the task
-          todo component */}
+        <TaskItem tasks={taskList} setTasks={setTaskList}/>
       </div>
     </div>
   );
