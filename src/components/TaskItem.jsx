@@ -1,21 +1,26 @@
 import React from "react";
 
+import styles from '../styles/task.module.css'
+
+import {MdDoneOutline, MdOutlineModeEditOutline, MdDelete} from 'react-icons/md'
+
+
 const TaskItem = ({ tasks, setTasks }) => {
   return (
-    <div>
+    <div className={styles.tasksContainer}>
       {tasks.map((taskItem) => (
-        <div key={taskItem.taskName}>
-          <div>
-            <div>{taskItem.status}</div>
+        <div className={`${styles.taskContainer} ${taskItem.status==="completed" ? styles.dark:null}`} key={taskItem.taskName}>
+          <div className={`${styles.taskName} ${taskItem.status==="completed" ? styles.inactive:null}`}>
             <div>{taskItem.taskName}</div>
           </div>
-          <div>
-            <div>{taskItem.date}</div>
-            <div>{taskItem.status}</div>
+          <div className={styles.taskDateStatus}>
+            <div className={`${styles.taskName} ${taskItem.status==="completed" ? styles.inactive:null}`}>{taskItem.date}</div>
+            <div className={`${styles.taskStatus} ${taskItem.status==="completed" ? styles.completed:null}`}>{taskItem.status}</div>
           </div>
-          <div>
-            <button>EDIT</button>
-            <button>DELETE</button>
+          <div className={styles.controlsContainer}>
+            <button><MdDoneOutline/></button>
+            <button><MdOutlineModeEditOutline/></button>
+            <button><MdDelete/></button>
           </div>
         </div>
       ))}
