@@ -14,7 +14,8 @@ const TaskItem = ({ tasks, setTasks }) => {
             <div>{taskItem.status}</div>
           </div>
           <div>
-            controls
+            <button>EDIT</button>
+            <button>DELETE</button>
           </div>
         </div>
       ))}
