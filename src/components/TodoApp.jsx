@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import TaskItem from "./TaskItem";
 
@@ -24,6 +24,13 @@ const TodoApp = () => {
 
   // console.log(taskNameInput, taskDateInput)
 
+  useEffect(()=>{
+    if(localStorage.getItem("localTaskList")){
+      let localData = JSON.parse(localStorage.getItem("localTaskList"))
+      setTaskList(localData)
+    }
+  },[])
+
   //add task to tasklist
   const addTask = (e) => {
     if(taskNameInput === ""){
@@ -37,14 +44,14 @@ const TodoApp = () => {
         taskDate: taskDateInput,
         status: 'active'
       }
-      console.log("tasklist before",taskList)
+      // console.log("tasklist before",taskList)
       setTaskList([...taskList,newTask])
       localStorage.setItem("localTaskList",JSON.stringify([...taskList,newTask]))
       setTaskNameInput("")
       setTaskDateInput("")
     }
-    console.log("tasklist after",taskList)
   }
+  // console.log("tasklist after",taskList)
 
   return (
     <div className={styles.mainContainer}>
