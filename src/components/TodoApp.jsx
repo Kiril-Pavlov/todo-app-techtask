@@ -7,33 +7,38 @@ import styles from "../styles/todo.module.css";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 const TodoApp = () => {
-  const [taskList,setTaskList]= useState([
+  const [taskList, setTaskList] = useState([
     {
-      taskName:'Learn JavaScript',
-      date:'06/02/2023',
-      status: 'completed'
+      taskName: "Learn JavaScript",
+      date: "06/02/2023",
+      status: "completed",
     },
     {
-      taskName:'Learn Tailwind',
-      date:'12/02/2023',
-      status: 'active'
+      taskName: "Learn Tailwind",
+      date: "12/02/2023",
+      status: "active",
     },
     {
-      taskName:'Learn NodeJS',
-      date:'06/02/2023',
-      status: 'completed'
+      taskName: "Learn NodeJS",
+      date: "06/02/2023",
+      status: "completed",
     },
     {
-      taskName:'Learn Express',
-      date:'08/02/2023',
-      status: 'active'
+      taskName: "Learn Express",
+      date: "08/02/2023",
+      status: "active",
     },
     {
-      taskName:'Learn SQL',
-      date:'06/02/2023',
-      status: 'completed'
+      taskName: "Learn SQL",
+      date: "06/02/2023",
+      status: "completed",
     },
-  ])
+  ]);
+  const [taskNameInput, setTaskNameInput] = useState("");
+  const [taskDateInput, setTaskDateInput] = useState("");
+
+  // console.log(taskNameInput, taskDateInput)
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.inputAreaContainer}>
@@ -41,9 +46,14 @@ const TodoApp = () => {
           type="text"
           className={styles.taskNameInput}
           placeholder="Enter task description here..."
+          value={taskNameInput}
+          onChange={(e) => setTaskNameInput(e.target.value)}
         />
         <div className={styles.inputDateBtnContainer}>
-          <input type="date" name="" id="" className={styles.inputDate} />
+          <input type="date" name="" id="" className={styles.inputDate} 
+          value={taskDateInput}
+          onChange={(e)=>setTaskDateInput(e.target.value)}
+          />
           <button className={styles.addBtn}>ADD</button>
         </div>
       </div>
@@ -93,7 +103,7 @@ const TodoApp = () => {
         </div>
       </div>
       <div>
-        <TaskItem tasks={taskList} setTasks={setTaskList}/>
+        <TaskItem tasks={taskList} setTasks={setTaskList} />
       </div>
     </div>
   );
