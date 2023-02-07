@@ -6,6 +6,13 @@ import {MdDoneOutline, MdOutlineModeEditOutline, MdDelete} from 'react-icons/md'
 
 
 const TaskItem = ({ tasks, setTasks }) => {
+
+  const deleteTask = (taskItem) =>{
+    const updated = tasks.filter((t)=>t.id !== taskItem.id)
+    setTasks(updated)
+    localStorage.setItem("localTaskList",JSON.stringify(updated))
+  }
+
   return (
     <div className={styles.tasksContainer}>
       {tasks.map((taskItem) => (
@@ -20,7 +27,7 @@ const TaskItem = ({ tasks, setTasks }) => {
           <div className={styles.controlsContainer}>
             <button><MdDoneOutline/></button>
             <button><MdOutlineModeEditOutline/></button>
-            <button><MdDelete/></button>
+            <button onClick={()=>deleteTask(taskItem)}><MdDelete/></button>
           </div>
         </div>
       ))}
