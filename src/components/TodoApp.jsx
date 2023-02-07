@@ -39,6 +39,17 @@ const TodoApp = () => {
 
   // console.log(taskNameInput, taskDateInput)
 
+  //add task to tasklist
+  const addTask = (e) => {
+    if(taskNameInput === ""){
+      alert("Enter todo description")
+    }else if(taskDateInput === ""){
+      alert("Enter todo date")
+    }else{
+      alert("all ok")
+    }
+  }
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.inputAreaContainer}>
@@ -54,7 +65,7 @@ const TodoApp = () => {
           value={taskDateInput}
           onChange={(e)=>setTaskDateInput(e.target.value)}
           />
-          <button className={styles.addBtn}>ADD</button>
+          <button className={styles.addBtn} onClick={addTask}>ADD</button>
         </div>
       </div>
       <div className={styles.filterAreaContainer}>
