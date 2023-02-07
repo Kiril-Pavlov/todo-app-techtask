@@ -7,10 +7,23 @@ import {MdDoneOutline, MdOutlineModeEditOutline, MdDelete} from 'react-icons/md'
 
 const TaskItem = ({ tasks, setTasks }) => {
 
+  //delete task by id
   const deleteTask = (taskItem) =>{
     const updated = tasks.filter((t)=>t.id !== taskItem.id)
     setTasks(updated)
     localStorage.setItem("localTaskList",JSON.stringify(updated))
+  }
+
+  //toggle task status (active or completed)
+  const toggleTaskStatus = (taskItem) => {
+    let modified = tasks.map((t)=>{
+      if(taskItem.id === t.id){
+        return({...t, status: t.status === "active" ? "completed" : "active" })
+      }
+      return t
+    })
+    setTasks(modified)
+    localStorage.setItem("localTaskList",JSON.stringify(modified))
   }
 
   return (
@@ -25,7 +38,7 @@ const TaskItem = ({ tasks, setTasks }) => {
             <div className={`${styles.taskStatus} ${taskItem.status==="completed" ? styles.completed:null}`}>{taskItem.status}</div>
           </div>
           <div className={styles.controlsContainer}>
-            <button><MdDoneOutline/></button>
+            <button onClick={()=>toggleTaskStatus(taskItem)}><MdDoneOutline/></button>
             <button><MdOutlineModeEditOutline/></button>
             <button onClick={()=>deleteTask(taskItem)}><MdDelete/></button>
           </div>

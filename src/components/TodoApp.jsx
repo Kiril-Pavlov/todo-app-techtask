@@ -7,18 +7,7 @@ import styles from "../styles/todo.module.css";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 const TodoApp = () => {
-  const [taskList, setTaskList] = useState([
-    {
-      taskName: "Learn JavaScript",
-      taskDate: "06/02/2023",
-      status: "completed",
-    },
-    {
-      taskName: "Learn Tailwind",
-      taskDate: "12/02/2023",
-      status: "active",
-    },
-  ]);
+  const [taskList, setTaskList] = useState([]);
   const [taskNameInput, setTaskNameInput] = useState("");
   const [taskDateInput, setTaskDateInput] = useState("");
 
