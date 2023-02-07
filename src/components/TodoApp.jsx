@@ -10,28 +10,13 @@ const TodoApp = () => {
   const [taskList, setTaskList] = useState([
     {
       taskName: "Learn JavaScript",
-      date: "06/02/2023",
+      taskDate: "06/02/2023",
       status: "completed",
     },
     {
       taskName: "Learn Tailwind",
-      date: "12/02/2023",
+      taskDate: "12/02/2023",
       status: "active",
-    },
-    {
-      taskName: "Learn NodeJS",
-      date: "06/02/2023",
-      status: "completed",
-    },
-    {
-      taskName: "Learn Express",
-      date: "08/02/2023",
-      status: "active",
-    },
-    {
-      taskName: "Learn SQL",
-      date: "06/02/2023",
-      status: "completed",
     },
   ]);
   const [taskNameInput, setTaskNameInput] = useState("");
@@ -46,8 +31,19 @@ const TodoApp = () => {
     }else if(taskDateInput === ""){
       alert("Enter todo date")
     }else{
-      alert("all ok")
+      let newTask = {
+        id: new Date().getTime().toString(),
+        taskName: taskNameInput,
+        taskDate: taskDateInput,
+        status: 'active'
+      }
+      console.log("tasklist before",taskList)
+      setTaskList([...taskList,newTask])
+      localStorage.setItem("localTaskList",JSON.stringify([...taskList,newTask]))
+      setTaskNameInput("")
+      setTaskDateInput("")
     }
+    console.log("tasklist after",taskList)
   }
 
   return (
