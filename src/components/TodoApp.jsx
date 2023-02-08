@@ -16,6 +16,7 @@ const TodoApp = () => {
 
   //popup states
   const [isOpen, setIsOpen] = useState(false);
+  const [task, setTask] = useState('');
 
   // console.log(taskNameInput, taskDateInput)
 
@@ -126,9 +127,17 @@ const TodoApp = () => {
           setTasks={setTaskList}
           popupState={isOpen}
           setPopupState={setIsOpen}
+          task={task}
+          setTask={setTask}
         />
       </div>
-      <Popup popupState={isOpen} setPopupState={() => setIsOpen(false)} />
+      <Popup
+        popupState={isOpen}
+        setPopupState={() => setIsOpen(false)}
+        task={task}
+        taskList={taskList}
+        setTaskList={setTaskList}
+      />
     </div>
   );
 };
