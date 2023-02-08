@@ -3,23 +3,29 @@ import React, { useState } from "react";
 import styles from "../styles/popup.module.css";
 
 const Popup = ({ popupState, setPopupState, task, taskList, setTaskList }) => {
-    const [taskNameEdit, setTaskNameEdit] = useState('');
-    const [taskDateEdit, setTaskDateEdit] = useState('');
+  const [taskNameEdit, setTaskNameEdit] = useState("");
+  const [taskDateEdit, setTaskDateEdit] = useState("");
 
   if (!popupState) return null;
 
   const handleTaskEdit = (task) => {
-    let editedTasks = taskList.map((t) => {
-      if (t.id === task.id) {
-        return { ...t, taskName: taskNameEdit, taskDate: taskDateEdit };
-      }
-      return t;
-    });
-    setTaskList(editedTasks);
-    localStorage.setItem("localTaskList", JSON.stringify(editedTasks));
-    setPopupState();
-    setTaskNameEdit("");
-    setTaskDateEdit("");
+    if (taskNameEdit === "") {
+      alert("Enter task name please");
+    } else if (taskDateEdit === "") {
+      alert("Enter task date please");
+    } else {
+      let editedTasks = taskList.map((t) => {
+        if (t.id === task.id) {
+          return { ...t, taskName: taskNameEdit, taskDate: taskDateEdit };
+        }
+        return t;
+      });
+      setTaskList(editedTasks);
+      localStorage.setItem("localTaskList", JSON.stringify(editedTasks));
+      setPopupState();
+      setTaskNameEdit("");
+      setTaskDateEdit("");
+    }
   };
 
   const handleTaskNameEdit = (e) => {
@@ -29,7 +35,6 @@ const Popup = ({ popupState, setPopupState, task, taskList, setTaskList }) => {
   const handleTaskDateEdit = (e) => {
     setTaskDateEdit(e.target.value);
   };
-
 
   return (
     <div className={styles.overlayContainer} onClick={setPopupState}>
