@@ -41,7 +41,7 @@ const TaskItem = ({ tasks, setTasks, task, setTask, setPopupState }) => {
           className={`${styles.taskContainer} ${
             taskItem.status === "completed" ? styles.dark : null
           }`}
-          key={taskItem.taskName}
+          key={taskItem.id}
         >
           <div
             className={`${styles.taskName} ${

@@ -3,28 +3,31 @@ import React, { useState } from "react";
 import styles from "../styles/popup.module.css";
 
 const Popup = ({ popupState, setPopupState, task, taskList, setTaskList }) => {
-  const [taskTitleEdit, setTaskTitleEdit] = useState("");
+    const [taskNameEdit, setTaskNameEdit] = useState('');
+    const [taskDateEdit, setTaskDateEdit] = useState('');
 
   if (!popupState) return null;
 
   const handleTaskEdit = (task) => {
-    console.log(task);
     let editedTasks = taskList.map((t) => {
-      console.log(t.id, task.id);
       if (t.id === task.id) {
-        return { ...t, taskName: taskTitleEdit };
+        return { ...t, taskName: taskNameEdit, taskDate: taskDateEdit };
       }
       return t;
     });
-    console.log(editedTasks);
     setTaskList(editedTasks);
     localStorage.setItem("localTaskList", JSON.stringify(editedTasks));
     setPopupState();
-    setTaskTitleEdit("");
+    setTaskNameEdit("");
+    setTaskDateEdit("");
   };
 
-  const handleTitleEdit = (e) => {
-    setTaskTitleEdit(e.target.value);
+  const handleTaskNameEdit = (e) => {
+    setTaskNameEdit(e.target.value);
+  };
+
+  const handleTaskDateEdit = (e) => {
+    setTaskDateEdit(e.target.value);
   };
 
 
@@ -40,12 +43,20 @@ const Popup = ({ popupState, setPopupState, task, taskList, setTaskList }) => {
           X
         </button>
         <div className={styles.popupInputContainer}>
-          <label htmlFor="task-edit-input">Edit task here:</label>
+          <label htmlFor="task-edit-input">Edit task name here:</label>
           <input
             type="text"
-            onChange={handleTitleEdit}
-            value={taskTitleEdit}
+            onChange={handleTaskNameEdit}
+            value={taskNameEdit}
             placeholder="Enter title task here"
+          />
+        </div>
+        <div className={styles.popupInputContainer}>
+          <label htmlFor="date-edit-input">Edit task date here:</label>
+          <input
+            type="date"
+            onChange={handleTaskDateEdit}
+            value={taskDateEdit}
           />
         </div>
         <div className={styles.popupButtons}>
