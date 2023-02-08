@@ -5,7 +5,7 @@ import styles from '../styles/task.module.css'
 import {MdDoneOutline, MdOutlineModeEditOutline, MdDelete} from 'react-icons/md'
 
 
-const TaskItem = ({ tasks, setTasks }) => {
+const TaskItem = ({ tasks, setTasks , popupState, setPopupState}) => {
 
   //delete task by id
   const deleteTask = (taskItem) =>{
@@ -39,7 +39,7 @@ const TaskItem = ({ tasks, setTasks }) => {
           </div>
           <div className={styles.controlsContainer}>
             <button onClick={()=>toggleTaskStatus(taskItem)}><MdDoneOutline/></button>
-            <button><MdOutlineModeEditOutline/></button>
+            <button onClick={()=>setPopupState(true)}><MdOutlineModeEditOutline/></button>
             <button onClick={()=>deleteTask(taskItem)}><MdDelete/></button>
           </div>
         </div>
