@@ -11,7 +11,7 @@
     position: relative;
     width: 350px;
     background-color: rgba(255, 255, 255, 0.9);
-    border: 3px solid brown;
+    border: none;
     border-radius: 30px;
     position: fixed;
     top: 40%;
@@ -28,7 +28,7 @@
     top: 30px;
     border: none;
     background-color: transparent;
-    color: brown;
+    color: rgb(128, 87, 11);
     font-weight: 700;
     font-size: 1.2rem;
     cursor: pointer;
@@ -39,18 +39,18 @@
     display: flex;
     flex-direction: column;
     grid-gap: 10px;
-    color: brown;
+    color: rgb(128, 87, 11);
     font-size: 1.2rem;
     font-weight: 600;
 }
 
 .popupInputContainer input{
-    border: 2px solid brown;
+    border: 2px solid rgb(128, 87, 11);
     border-radius: 20px;
     padding: 3px 20px;
     font-size: 1.1rem;
     font-style: italic;
-    color: brown;
+    color: brgb(128, 87, 11);
     background-color: transparent;
     margin-bottom: 10px;
 }
@@ -69,7 +69,7 @@
 }
 
 .popupConfirmButton{
-    background-color: brown;
+    background-color: rgb(128, 87, 11);
     color: white;
     border: 2px solid transparent;
     transition: all .5s;
@@ -77,6 +77,6 @@
 
 .popupConfirmButton:hover{
     border: 2px solid black;
-    background: rgba(146, 47, 47, 0.3);
+    background: rgba(201, 182, 182, 0.3);
     color: black;
 }

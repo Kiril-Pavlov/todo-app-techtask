@@ -56,8 +56,6 @@ const TodoApp = () => {
     }
   };
 
-  console.log(dateFilterInput, statusFilterInput, sortSelected)
-
   return (
     <div className={styles.mainContainer}>
       <div className={styles.inputAreaContainer}>
@@ -78,7 +76,7 @@ const TodoApp = () => {
             onChange={(e) => setTaskDateInput(e.target.value)}
           />
           <button className={styles.addBtn} onClick={addTask}>
-            ADD
+            ADD TASK
           </button>
         </div>
       </div>
