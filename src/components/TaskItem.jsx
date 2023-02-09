@@ -6,6 +6,7 @@ import {
   MdDoneOutline,
   MdOutlineModeEditOutline,
   MdDelete,
+  MdUndo
 } from "react-icons/md";
 
 const TaskItem = ({
@@ -135,7 +136,11 @@ const TaskItem = ({
             </div>
             <div className={styles.controlsContainer}>
               <button onClick={() => toggleTaskStatus(taskItem)}>
-                <MdDoneOutline />
+                {taskItem.status === "active" ? (
+                  <MdDoneOutline />
+                ):(
+                  <MdUndo />
+                )}
               </button>
               <button onClick={() => handlePopupOpened(taskItem)}>
                 <MdOutlineModeEditOutline />
