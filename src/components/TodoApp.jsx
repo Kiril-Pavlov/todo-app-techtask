@@ -132,10 +132,11 @@ const TodoApp = () => {
         <TaskItem
           tasks={taskList}
           setTasks={setTaskList}
-          popupState={isOpen}
           setPopupState={setIsOpen}
-          task={task}
           setTask={setTask}
+          dateFilter={dateFilterInput}
+          statusFilter={statusFilterInput}
+          sortBy={sortSelected}
         />
       </div>
       <Popup

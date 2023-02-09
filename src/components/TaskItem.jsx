@@ -8,7 +8,15 @@ import {
   MdDelete,
 } from "react-icons/md";
 
-const TaskItem = ({ tasks, setTasks, task, setTask, setPopupState }) => {
+const TaskItem = ({
+  tasks,
+  setTasks,
+  setPopupState,
+  setTask,
+  dateFilter,
+  statusFilter,
+  sortBy,
+}) => {
   //delete task by id
   const deleteTask = (taskItem) => {
     const updated = tasks.filter((t) => t.id !== taskItem.id);
@@ -34,51 +42,110 @@ const TaskItem = ({ tasks, setTasks, task, setTask, setPopupState }) => {
     setTask(taskItem);
   };
 
+  //handle filtering undefined or empty filters included
+  const handleFiltering = (t) => {
+    if (!dateFilter && (statusFilter === "all" || !statusFilter)) {
+      return tasks;
+    } else if (!dateFilter) {
+      return tasks.filter((t) => t.status === statusFilter);
+    } else if (statusFilter === "all" || !statusFilter) {
+      return tasks.filter((t) => t.taskDate === dateFilter);
+    } else {
+      return tasks
+        .filter((t) => t.status === statusFilter)
+        .filter((t) => t.taskDate === dateFilter);
+    }
+  };
+
   return (
     <div className={styles.tasksContainer}>
-      {tasks.map((taskItem) => (
-        <div
-          className={`${styles.taskContainer} ${
-            taskItem.status === "completed" ? styles.dark : null
-          }`}
-          key={taskItem.id}
-        >
+      {handleFiltering()
+        .sort(
+          sortBy === "nameAsc"
+            ? (a, b) => {
+                if (a.taskName.toLowerCase() < b.taskName.toLowerCase()) {
+                  return -1;
+                }
+                if (a.taskName.toLowerCase() > b.taskName.toLowerCase()) {
+                  return 1;
+                }
+              }
+            : sortBy == "nameDesc"
+            ? (a, b) => {
+                if (a.taskName.toLowerCase() < b.taskName.toLowerCase()) {
+                  return 1;
+                }
+                if (a.taskName.toLowerCase() > b.taskName.toLowerCase()) {
+                  return -1;
+                }
+              }
+            : sortBy === "dateAsc"
+            ? (a, b) => new Date(a.taskDate) - new Date(b.taskDate)
+            : sortBy==="dateDesc" 
+            ? (a, b) => new Date(b.taskDate) - new Date(a.taskDate)
+            : sortBy === "statusAsc"
+            ? (a, b) => {
+              if (a.status.toLowerCase() < b.status.toLowerCase()) {
+                return -1;
+              }
+              if (a.status.toLowerCase() > b.status.toLowerCase()) {
+                return 1;
+              }
+            }
+            : sortBy==="statusDesc" 
+            ? (a, b) => {
+              if (a.status.toLowerCase() < b.status.toLowerCase()) {
+                return 1;
+              }
+              if (a.status.toLowerCase() > b.status.toLowerCase()) {
+                return -1;
+              }
+            }
+            :(a, b) => new Date(a.taskDate) - new Date(b.taskDate)
+        )
+        .map((taskItem) => (
           <div
-            className={`${styles.taskName} ${
-              taskItem.status === "completed" ? styles.inactive : null
+            className={`${styles.taskContainer} ${
+              taskItem.status === "completed" ? styles.dark : null
             }`}
+            key={taskItem.id}
           >
-            <div>{taskItem.taskName}</div>
-          </div>
-          <div className={styles.taskDateStatus}>
             <div
-              className={`${styles.taskDate} ${
+              className={`${styles.taskName} ${
                 taskItem.status === "completed" ? styles.inactive : null
               }`}
             >
-              {taskItem.taskDate}
+              <div>{taskItem.taskName}</div>
             </div>
-            <div
-              className={`${styles.taskStatus} ${
-                taskItem.status === "completed" ? styles.completed : null
-              }`}
-            >
-              {taskItem.status}
+            <div className={styles.taskDateStatus}>
+              <div
+                className={`${styles.taskDate} ${
+                  taskItem.status === "completed" ? styles.inactive : null
+                }`}
+              >
+                {taskItem.taskDate}
+              </div>
+              <div
+                className={`${styles.taskStatus} ${
+                  taskItem.status === "completed" ? styles.completed : null
+                }`}
+              >
+                {taskItem.status}
+              </div>
+            </div>
+            <div className={styles.controlsContainer}>
+              <button onClick={() => toggleTaskStatus(taskItem)}>
+                <MdDoneOutline />
+              </button>
+              <button onClick={() => handlePopupOpened(taskItem)}>
+                <MdOutlineModeEditOutline />
+              </button>
+              <button onClick={() => deleteTask(taskItem)}>
+                <MdDelete />
+              </button>
             </div>
           </div>
-          <div className={styles.controlsContainer}>
-            <button onClick={() => toggleTaskStatus(taskItem)}>
-              <MdDoneOutline />
-            </button>
-            <button onClick={() => handlePopupOpened(taskItem)}>
-              <MdOutlineModeEditOutline />
-            </button>
-            <button onClick={() => deleteTask(taskItem)}>
-              <MdDelete />
-            </button>
-          </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 };
