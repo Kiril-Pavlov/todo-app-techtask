@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import TaskItem from "./TaskItem";
 import Popup from "./Popup";
 
+//CSS stylee
 import styles from "../styles/todo.module.css";
 
+//react icons
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 const TodoApp = () => {
@@ -14,12 +16,16 @@ const TodoApp = () => {
   const [taskNameInput, setTaskNameInput] = useState("");
   const [taskDateInput, setTaskDateInput] = useState("");
 
+  //filter and sort states
+  const [dateFilterInput,setDateFilterInput] = useState('')
+  const [statusFilterInput, setStatusFilterInput] = useState('')
+  const [sortSelected, setSortSelected] = useState('')
+
   //popup states
   const [isOpen, setIsOpen] = useState(false);
   const [task, setTask] = useState('');
 
-  // console.log(taskNameInput, taskDateInput)
-
+  //get tasks from local storage on refresh
   useEffect(() => {
     if (localStorage.getItem("localTaskList")) {
       let localData = JSON.parse(localStorage.getItem("localTaskList"));
@@ -40,7 +46,6 @@ const TodoApp = () => {
         taskDate: taskDateInput,
         status: "active",
       };
-      // console.log("tasklist before",taskList)
       setTaskList([...taskList, newTask]);
       localStorage.setItem(
         "localTaskList",
@@ -50,7 +55,8 @@ const TodoApp = () => {
       setTaskDateInput("");
     }
   };
-  // console.log("tasklist after",taskList)
+
+  console.log(dateFilterInput, statusFilterInput, sortSelected)
 
   return (
     <div className={styles.mainContainer}>
@@ -79,8 +85,9 @@ const TodoApp = () => {
       <div className={styles.filterAreaContainer}>
         <div className={styles.filterLabel}>Filter by:</div>
         <div className={styles.dateStatusContainer}>
-          <input type="date" name="" id="" className={styles.filterDate} />
-          <select name="" id="" className={styles.filterDate}>
+          <input type="date" name="" id="" className={styles.filterDate} value={dateFilterInput} onChange={(e)=>setDateFilterInput(e.target.value)}/>
+          <select name="" id="" className={styles.filterDate} onChange={(e) =>  setStatusFilterInput(e.target.value)}>
+            <option value="all">All</option>
             <option value="active">Active</option>
             <option value="completed">Completed</option>
           </select>
@@ -90,10 +97,10 @@ const TodoApp = () => {
         <div className={styles.sortItemContainer}>
           <div className={styles.sortLabel}>Name</div>
           <div className={styles.sortDirection}>
-            <button className={styles.sortBtn}>
-              <AiOutlineArrowDown />
+            <button className={styles.sortBtn} onClick={()=>setSortSelected("nameAsc")}>
+              <AiOutlineArrowDown/>
             </button>
-            <button className={styles.sortBtn}>
+            <button className={styles.sortBtn} onClick={()=>setSortSelected("nameDesc")}>
               <AiOutlineArrowUp />
             </button>
           </div>
@@ -101,10 +108,10 @@ const TodoApp = () => {
         <div className={styles.sortItemContainer}>
           <div className={styles.sortLabel}>Date</div>
           <div className={styles.sortDirection}>
-            <button className={styles.sortBtn}>
+            <button className={styles.sortBtn} onClick={()=>setSortSelected("dateAsc")}>
               <AiOutlineArrowDown />
             </button>
-            <button className={styles.sortBtn}>
+            <button className={styles.sortBtn} onClick={()=>setSortSelected("dateDesc")}>
               <AiOutlineArrowUp />
             </button>
           </div>
@@ -112,10 +119,10 @@ const TodoApp = () => {
         <div className={styles.sortItemContainer}>
           <div className={styles.sortLabel}>Status</div>
           <div className={styles.sortDirection}>
-            <button className={styles.sortBtn}>
+            <button className={styles.sortBtn} onClick={()=>setSortSelected("statusAsc")}>
               <AiOutlineArrowDown />
             </button>
-            <button className={styles.sortBtn}>
+            <button className={styles.sortBtn} onClick={()=>setSortSelected("statusDesc")}>
               <AiOutlineArrowUp />
             </button>
           </div>
